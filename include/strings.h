@@ -2716,4 +2716,8 @@ extern const u8 gText_RedYellow[];
 extern const u8 gText_BlackWhite[];
 extern const u8 gText_BlueGreen[];
 
+//Summary Screen
+extern const u8 gText_Relearn[]; // move relearner from summary screen
+extern const u8 gText_Rename[]; // change nickname from summary screen
+
 #endif // GUARD_STRINGS_H
