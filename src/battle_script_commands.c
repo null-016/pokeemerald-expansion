@@ -13199,7 +13199,12 @@ static void Cmd_settailwind(void)
     {
         gSideStatuses[side] |= SIDE_STATUS_TAILWIND;
         gSideTimers[side].tailwindBattlerId = gBattlerAttacker;
+        if(IsDoubleBattle()){
         gSideTimers[side].tailwindTimer = B_TAILWIND_TURNS >= GEN_5 ? 4 : 3;
+        } else {
+            //6 turns tailwind in singles
+            gSideTimers[side].tailwindTimer = 6;
+        }
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
     else

@@ -2408,4 +2408,12 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .cantBeSwapped = TRUE,
         .cantBeTraced = TRUE,
     },
+
+    [ABILITY_GHOSTLY_SCALES] =
+    {
+        .name = _("Ghostly Scales"),
+        .description = COMPOUND_STRING("Flying, Rock and Ghost protection."),
+        .aiRating = 7,
+        .breakable = TRUE,
+    },
 };

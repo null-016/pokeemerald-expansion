@@ -2708,4 +2708,12 @@ extern const u8 gText_PM[];
 extern const u8 gText_PlayerScurriedToCenter[];
 extern const u8 gText_PlayerScurriedBackHome[];
 
+//starter choices
+extern const u8 gText_CuteStarter[];
+extern const u8 gText_CoolStarter[];
+extern const u8 gText_ToughStarter[];
+extern const u8 gText_RedYellow[];
+extern const u8 gText_BlackWhite[];
+extern const u8 gText_BlueGreen[];
+
 #endif // GUARD_STRINGS_H

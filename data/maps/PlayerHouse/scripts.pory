@@ -1,0 +1,403 @@
+mapscripts PlayerHouse_MapScripts{}
+
+script PlayerHouse_T_StarterConvo{
+    if(!flag(FLAG_SYS_POKEMON_GET)){
+    setvar(VAR_LITTLEROOT_TOWN_STATE, 4)
+    lockall
+    msgbox(format("Mom: Hi {PLAYER} dear, can you come here for a second?"))
+    applymovement(OBJ_EVENT_ID_PLAYER, playerMoveToMom)
+    waitmovement(0)
+    applymovement(1, FacePlayer)
+    waitmovement(0)
+    msgbox(format("Mom: I've been talking with your dad about your wish for your own pokemon,"
+                "and your inspiration to be a great pokemon trainer like Branden & May."))
+    waitmessage
+    applymovement(2, StartSpeak)
+    waitmovement(0)
+    msgbox(format("Dad: I've always been on the side of not encouraging you to walk the path of a trainer."
+                "You know, I was working for the Pokemon League a few years ago, when Kyogre & Groudon nearly"
+                "destroyed Hoenn."))
+    fadenewbgm(MUS_RAYQUAZA_APPEARS)
+    waitmessage
+    applymovement(2, FaceDown)
+    waitmovement(0)
+    msgbox(format("I was summoned among a few other league staff trying to stop those beasts"
+                "from their rampage, but was utterly powerless against those legendaries."))
+    waitmessage
+    applymovement(2, FaceAway)
+    waitmovement(0)
+    msgbox(format("Dad: All I could do was run away to our home, keep you and your mom safe."))
+    waitmessage
+    applymovement(2, FaceDown)
+    waitmovement(0)
+    msgbox(format("I have been a pokemon trainer for a good number of years. I thought I was decently"
+                "skilled as a trainer."))
+    waitmessage
+    applymovement(2, FacePlayer)
+    waitmovement(0)
+    msgbox(format("That moment crushed my pride. I don't regret running away for"
+                "protecting my family, but I also don't wish you to experience anything similar."
+                "Plus we are concerned about your safety."))
+    waitmessage
+    fadedefaultbgm
+    msgbox(format("Mom: While I understand where your Dad is coming from, I also believe it is your"
+                "right to pursue your dream, at least should have you giving it a shot."))
+    waitmessage
+    msgbox(format("Dad: Your 14th birthday is coming up. This could be the best time for a pokemon to be your present."
+                "It has been 6 years of peacefulness, but becoming a pokemon trainer still means danger is always by your side."))
+    waitmessage
+    msgbox(format("Mom: Promise us to be careful out there, OK?"))
+    waitmessage
+    msgbox(format("Mom: Alright, enough with the depressing talk. What kind of pokemon do you want?: )"))
+    multichoice(25,5,MULTI_STARTER_TYPE,1)
+    closemessage
+    if(var(VAR_RESULT) == 0){
+        setvar(VAR_STARTER_TYPE, 0)
+    }elif(var(VAR_RESULT) == 1){
+        setvar(VAR_STARTER_TYPE, 1)
+    }elif(var(VAR_RESULT) == 2){
+        setvar(VAR_STARTER_TYPE, 2)
+    }
+    msgbox(format("Mom: What color of the pokemon do you have in mind? : )"))
+    multichoice(25,5,MULTI_STARTER_COLOR,1)
+    closemessage
+    if(var(VAR_RESULT) == 0){
+        setvar(VAR_STARTER_COLOR, 0)
+    }elif(var(VAR_RESULT) == 1){
+        setvar(VAR_STARTER_COLOR, 1)
+    }elif(var(VAR_RESULT) == 2){
+        setvar(VAR_STARTER_COLOR, 2)
+    }
+    msgbox(format("Dad: OK, leave it to me."))
+    waitmessage
+    fadescreen(FADE_TO_BLACK)
+    msgbox(format("On {PLAYER}'s birthday..."))
+    waitmessage
+    delay(20)
+    fadescreen(FADE_FROM_BLACK)
+
+
+    msgbox(format("Mom: Ready to meet your first partner?"))
+    waitmessage
+    applymovement(1, FaceAway)
+    waitmovement(0)
+    applymovement(2, dadMoveToPlayer)
+    waitmovement(0)
+    applymovement(1, FacePlayer)
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_PLAYER, FaceUp)
+    waitmovement(0)
+
+    msgbox(format("Dad: Here you go."))
+    waitmessage
+
+    call(PlayerHouse_EventScript_GiveStarter)
+    setflag(FLAG_SYS_POKEMON_GET)
+    releaseall
+    end
+    }
+}
+
+script PlayerHouse_EventScript_GiveStarter{
+    switch (var(VAR_STARTER_TYPE)) {
+        case 0:
+            switch (var(VAR_STARTER_COLOR)) {
+                case 0:
+                    showmonpic(SPECIES_TOGEPI, 10,3)
+                    msgbox("A Cute looking and Yellow pokemon.")
+                    givemon(SPECIES_TOGEPI, 5, ITEM_NONE)
+                    if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Togepi!")
+                        call(NicknamePartyMon)
+                    }
+                    elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Togepi!")
+                        call(NicknameBoxMon)
+                    }
+                    else{
+                        hidemonpic
+                        msgbox("No More Room")
+                    }
+                case 1:
+                    showmonpic(SPECIES_RALTS, 10,3)
+                    msgbox("A Cute looking and White pokemon.")
+                    givemon(SPECIES_RALTS, 5, ITEM_NONE)
+                    if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Ralts!")
+                        call(NicknamePartyMon)
+                    }
+                    elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Ralts!")
+                        call(NicknameBoxMon)
+                    }
+                    else{
+                        hidemonpic
+                        msgbox("No More Room")
+                    }
+                case 2:
+                    showmonpic(SPECIES_DRATINI, 10,3)
+                    msgbox("A Cute looking and Blue pokemon.")
+                    givemon(SPECIES_DRATINI, 5, ITEM_NONE)
+                    if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Dratini!")
+                        call(NicknamePartyMon)
+                    }
+                    elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Dratini!")
+                        call(NicknameBoxMon)
+                    }
+                    else{
+                        hidemonpic
+                        msgbox("No More Room")
+                    }
+                default:
+                    showmonpic(SPECIES_DRATINI, 10,3)
+                    msgbox("A Cute looking and Blue pokemon.")
+                    givemon(SPECIES_DRATINI, 5, ITEM_NONE)
+                    if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Dratini!")
+                        call(NicknamePartyMon)
+                    }
+                    elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Dratini!")
+                        call(NicknameBoxMon)
+                    }
+                    else{
+                        hidemonpic
+                        msgbox("No More Room")
+                    }
+            }
+        case 1:
+            switch (var(VAR_STARTER_COLOR)) {
+                case 0:
+                    showmonpic(SPECIES_ABRA, 10,3)
+                    msgbox("A Cool looking and Yellow pokemon.")
+                    givemon(SPECIES_ABRA, 5, ITEM_NONE)
+                    if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Abra!")
+                        call(NicknamePartyMon)
+                    }
+                    elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Abra!")
+                        call(NicknameBoxMon)
+                    }
+                    else{
+                        hidemonpic
+                        msgbox("No More Room")
+                    }
+                case 1:
+                    showmonpic(SPECIES_LITWICK, 10,3)
+                    msgbox("A Cool looking and White pokemon.")
+                    givemon(SPECIES_LITWICK, 5, ITEM_NONE)
+                    if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Litwick!")
+                        call(NicknamePartyMon)
+                    }
+                    elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Litwick!")
+                        call(NicknameBoxMon)
+                    }
+                    else{
+                        hidemonpic
+                        msgbox("No More Room")
+                    }
+                case 2:
+                    showmonpic(SPECIES_GIBLE, 10,3)
+                    msgbox("A Cool looking and Green pokemon.")
+                    givemon(SPECIES_GIBLE, 5, ITEM_NONE)
+                    if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Gible!")
+                        call(NicknamePartyMon)
+                    }
+                    elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Gible!")
+                        call(NicknameBoxMon)
+                    }
+                    else{
+                        hidemonpic
+                        msgbox("No More Room")
+                    }
+                default:
+                    showmonpic(SPECIES_GIBLE, 10,3)
+                    msgbox("A Cool looking and Green pokemon.")
+                    givemon(SPECIES_GIBLE, 5, ITEM_NONE)
+                    if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Gible!")
+                        call(NicknamePartyMon)
+                    }
+                    elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Gible!")
+                        call(NicknameBoxMon)
+                    }
+                    else{
+                        hidemonpic
+                        msgbox("No More Room")
+                    }
+            }
+        case 2:
+            switch (var(VAR_STARTER_COLOR)) {
+                case 0:
+                    showmonpic(SPECIES_VENIPEDE, 10,3)
+                    msgbox("A Tough looking and Red pokemon.")
+                    givemon(SPECIES_VENIPEDE, 5, ITEM_NONE)
+                    if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Venipede!")
+                        call(NicknamePartyMon)
+                    }
+                    elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Venipede!")
+                        call(NicknameBoxMon)
+                    }
+                    else{
+                        hidemonpic
+                        msgbox("No More Room")
+                    }
+                case 1:
+                    showmonpic(SPECIES_ZIGZAGOON_GALAR, 10,3)
+                    msgbox("A Tough looking, Black and White pokemon.")
+                    givemon(SPECIES_ZIGZAGOON_GALAR, 5, ITEM_NONE)
+                    if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Galarian Zigzagoon!")
+                        call(NicknamePartyMon)
+                    }
+                    elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Galarian Zigzagoon!")
+                        call(NicknameBoxMon)
+                    }
+                    else{
+                        hidemonpic
+                        msgbox("No More Room")
+                    }
+                case 2:
+                    showmonpic(SPECIES_BELDUM, 10,3)
+                    msgbox("A Tough looking and Blue pokemon.")
+                    givemon(SPECIES_BELDUM, 5, ITEM_NONE)
+                    if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Beldum!")
+                        call(NicknamePartyMon)
+                    }
+                    elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Beldum!")
+                        call(NicknameBoxMon)
+                    }
+                    else{
+                        hidemonpic
+                        msgbox("No More Room")
+                    }
+                default:
+                    showmonpic(SPECIES_BELDUM, 10,3)
+                    msgbox("A Tough looking and Blue pokemon.")
+                    givemon(SPECIES_BELDUM, 5, ITEM_NONE)
+                    if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Beldum!")
+                        call(NicknamePartyMon)
+                    }
+                    elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("Recieved Beldum!")
+                        call(NicknameBoxMon)
+                    }
+                    else{
+                        hidemonpic
+                        msgbox("No More Room")
+                    }
+            }
+        default:
+            showmonpic(SPECIES_DRATINI, 10,3)
+            msgbox("A Cute looking and Blue pokemon.")
+            givemon(SPECIES_DRATINI, 5, ITEM_NONE)
+            if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+                playfanfare(MUS_OBTAIN_ITEM)
+                msgbox("Recieved Dratini!")
+                call(NicknamePartyMon)
+            }
+            elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+                playfanfare(MUS_OBTAIN_ITEM)
+                msgbox("Recieved Dratini!")
+                call(NicknameBoxMon)
+            }
+            else{
+                hidemonpic
+                msgbox("No More Room")
+            }
+    }
+    
+}
+
+script NicknamePartyMon{
+    msgbox("Give a nickname?", MSGBOX_YESNO)
+    hidemonpic
+    if(var(VAR_RESULT) == YES){
+        call(Common_EventScript_GetGiftMonPartySlot)
+        call(Common_EventScript_NameReceivedPartyMon)
+    }
+}
+
+script NicknameBoxMon{
+    msgbox("Give a nickname?", MSGBOX_YESNO)
+    hidemonpic
+    if(var(VAR_RESULT) == YES){
+        call(Common_EventScript_NameReceivedBoxMon)
+    }
+    msgbox("Transferred to PC")
+}
+
+movement playerMoveToMom{
+    face_left
+    walk_left * 2
+    face_down
+    walk_down * 3
+    face_left
+}
+
+movement dadMoveToPlayer{
+    face_up
+    walk_up * 2
+    face_right
+    walk_right * 4
+    face_down
+    walk_down
+}
+
+movement FacePlayer{
+    face_right
+}
+
+movement FaceAway{
+    face_left
+}
+
+movement StartSpeak{
+    walk_right
+}
+
+movement FaceDown{
+    face_down
+}
+
+movement FaceUp{
+    face_up
+}

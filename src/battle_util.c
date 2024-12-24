@@ -4199,10 +4199,15 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_TRICK_ROOM;
                     gFieldStatuses |= STATUS_FIELD_TRICK_ROOM;
                     gBattleScripting.animArg1 = B_ANIM_TRICK_ROOM;
-                    if (timerVal == 0)
+                    if (timerVal == 0){
                         gFieldTimers.trickRoomTimer = 0;    // infinite
-                    else
+                    }else{
+                        if(IsDoubleBattle()){
                         gFieldTimers.trickRoomTimer = 5;
+                        } else {
+                        gFieldTimers.trickRoomTimer = 8;    // 8 turns for single battle
+                        }
+                    }
                     effect = 1;
                 }
                 break;
@@ -9635,6 +9640,14 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
     {
     case ABILITY_THICK_FAT:
         if (moveType == TYPE_FIRE || moveType == TYPE_ICE)
+        {
+            modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_THICK_FAT);
+        }
+        break;
+    case ABILITY_GHOSTLY_SCALES:
+        if (moveType == TYPE_ROCK || moveType == TYPE_FLYING || moveType == TYPE_GHOST)
         {
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(0.5));
             if (updateFlags)

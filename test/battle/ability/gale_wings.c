@@ -1,11 +1,11 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("Gale Wings only grants priority at full HP")
+SINGLE_BATTLE_TEST("Gale Wings only grants priority at above half HP")
 {
     u16 hp;
     PARAMETRIZE { hp = 100; }
-    PARAMETRIZE { hp = 99; }
+    PARAMETRIZE { hp = 49; }
     GIVEN {
         ASSUME(B_GALE_WINGS >= GEN_7);
         ASSUME(gMovesInfo[MOVE_AERIAL_ACE].type == TYPE_FLYING);

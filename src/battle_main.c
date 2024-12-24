@@ -4744,7 +4744,7 @@ u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
     // other abilities
     if (ability == ABILITY_QUICK_FEET && gBattleMons[battler].status1 & STATUS1_ANY)
         speed = (speed * 150) / 100;
-    else if (ability == ABILITY_SURGE_SURFER && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+    else if (ability == ABILITY_SURGE_SURFER && (gFieldStatuses & (STATUS_FIELD_PSYCHIC_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN)))
         speed *= 2;
     else if (ability == ABILITY_SLOW_START && gDisableStructs[battler].slowStartTimer != 0)
         speed /= 2;
@@ -4826,7 +4826,7 @@ s8 GetMovePriority(u32 battler, u16 move)
         return gMovesInfo[MOVE_MAX_GUARD].priority;
 
     if (ability == ABILITY_GALE_WINGS
-        && (B_GALE_WINGS < GEN_7 || BATTLER_MAX_HP(battler))
+        && (B_GALE_WINGS < GEN_7 || (gBattleMons[battler].hp > (gBattleMons[battler].maxHP / 2)))
         && gMovesInfo[move].type == TYPE_FLYING)
     {
         priority++;

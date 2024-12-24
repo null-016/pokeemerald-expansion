@@ -1567,3 +1567,11 @@ const u8 gText_Fertilize[] = _("FERTILIZE");
 const u8 gText_PlantBerry[] = _("PLANT BERRY");
 const u8 gText_AM[] = _("AM");
 const u8 gText_PM[] = _("PM");
+
+const u8 gText_CuteStarter[] = _("Cute Looking");
+const u8 gText_CoolStarter[] = _("Cool Looking");
+const u8 gText_ToughStarter[] = _("Tough Looking");
+
+const u8 gText_RedYellow[] = _("Red/Yellow");
+const u8 gText_BlackWhite[] = _("Black/White");
+const u8 gText_BlueGreen[] = _("Blue/Green");

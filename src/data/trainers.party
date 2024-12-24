@@ -6299,6 +6299,77 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Ice Beam
 - Toxic
 
+=== TRAINER_CHAMPION_MAY ===
+Name: MAY
+Class: Champion
+Pic: Champion May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Ace Pokemon
+Mugshot: Yellow
+
+Samurott-Hisui (M) @ Focus Sash
+Level: 60
+Ability: Sharpness
+Jolly Nature
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Ceaseless Edge
+- Razor Shell
+- Sucker Punch
+- Knock Off
+
+Hatterene (F) @ Leftovers
+Level: 60
+Ability: Magic Bounce
+Modest Nature
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Calm Mind  
+- Draining Kiss  
+- Psyshock  
+- Mystical Fire
+
+Clodsire (F) @ Heavy-Duty Boots
+Level: 60
+Ability: Unaware
+Careful Nature
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Earthquake  
+- Recover  
+- Toxic  
+- Stealth Rock
+
+Dragonite (M) @ Choice Band  
+Level: 60
+Ability: Multiscale
+Tera Type: Normal
+Jolly Nature
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Extreme Speed  
+- Outrage  
+- Ice Spinner  
+- Earthquake
+
+Rotom-Wash @ Rocky Helmet
+Level: 60
+Ability: Levitate
+Modest Nature
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Pain Split
+- Volt Switch
+- Hydro Pump
+- Will-O-Wisp
+
+Blaziken-Mega (F) @ Blazikenite
+Level: 62
+Ability: Speed Boost
+Adamant Nature
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Swords Dance  
+- Flare Blitz  
+- Close Combat  
+- Rock Slide
+
 === TRAINER_ANDREW ===
 Name: ANDREW
 Class: Fisherman
