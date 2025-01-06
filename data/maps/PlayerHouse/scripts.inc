@@ -324,7 +324,7 @@ PlayerHouse_EventScript_GiveStarter_8:
 # 125 "data/maps/PlayerHouse/scripts.pory"
 	msgbox PlayerHouse_EventScript_GiveStarter_Text_3
 # 126 "data/maps/PlayerHouse/scripts.pory"
-	givemon SPECIES_RALTS, 5, ITEM_NONE
+	givemon SPECIES_GARDEVOIR, 35, ITEM_NONE
 # 127 "data/maps/PlayerHouse/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PARTY
 	goto_if_eq PlayerHouse_EventScript_GiveStarter_31

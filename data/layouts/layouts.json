@@ -886,7 +886,7 @@
       "name": "MauvilleCity_Gym_Layout",
       "width": 10,
       "height": 21,
-      "primary_tileset": "gTileset_Building",
+      "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_MauvilleGym",
       "border_filepath": "data/layouts/MauvilleCity_Gym/border.bin",
       "blockdata_filepath": "data/layouts/MauvilleCity_Gym/map.bin"

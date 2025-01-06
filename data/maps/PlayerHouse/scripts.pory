@@ -93,6 +93,8 @@ script PlayerHouse_T_StarterConvo{
 
     call(PlayerHouse_EventScript_GiveStarter)
     setflag(FLAG_SYS_POKEMON_GET)
+    setflag(FLAG_RECEIVED_RUNNING_SHOES)
+    setflag(FLAG_EXPSHARE_ON)
     releaseall
     end
     }
@@ -123,7 +125,7 @@ script PlayerHouse_EventScript_GiveStarter{
                 case 1:
                     showmonpic(SPECIES_RALTS, 10,3)
                     msgbox("A Cute looking and White pokemon.")
-                    givemon(SPECIES_RALTS, 5, ITEM_NONE)
+                    givemon(SPECIES_GARDEVOIR, 35, ITEM_NONE)
                     if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
                         playfanfare(MUS_OBTAIN_ITEM)
                         msgbox("Recieved Ralts!")
