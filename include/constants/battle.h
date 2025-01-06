@@ -331,7 +331,11 @@
 #define MOVE_EFFECT_TOXIC               6
 #define MOVE_EFFECT_FROSTBITE           7
 #define PRIMARY_STATUS_MOVE_EFFECT      MOVE_EFFECT_FROSTBITE // All above move effects apply primary status
-#define MOVE_EFFECT_FREEZE_OR_FROSTBITE (B_USE_FROSTBITE == TRUE ? MOVE_EFFECT_FROSTBITE : MOVE_EFFECT_FREEZE)
+#if B_USE_FROSTBITE == TRUE
+#define MOVE_EFFECT_FREEZE_OR_FROSTBITE MOVE_EFFECT_FROSTBITE
+#else
+#define MOVE_EFFECT_FREEZE_OR_FROSTBITE MOVE_EFFECT_FREEZE
+#endif
 #define MOVE_EFFECT_CONFUSION           8
 #define MOVE_EFFECT_FLINCH              9
 #define MOVE_EFFECT_TRI_ATTACK          10
@@ -414,7 +418,7 @@
 #define MOVE_EFFECT_SALT_CURE           87
 #define MOVE_EFFECT_EERIE_SPELL         88
 
-#define NUM_MOVE_EFFECTS                88
+#define NUM_MOVE_EFFECTS                89
 
 #define MOVE_EFFECT_AFFECTS_USER        0x2000
 #define MOVE_EFFECT_CERTAIN             0x4000

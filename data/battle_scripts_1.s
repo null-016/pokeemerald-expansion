@@ -407,13 +407,13 @@ BattleScript_SaltCureExtraDamage::
 	call BattleScript_HurtTarget_NoString
 	printstring STRINGID_TARGETISHURTBYSALTCURE
 	waitmessage B_WAIT_TIME_LONG
+	tryfaintmon BS_TARGET
 	end2
 
 BattleScript_HurtTarget_NoString:
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
 	healthbarupdate BS_TARGET
 	datahpupdate BS_TARGET
-	tryfaintmon BS_TARGET
 	return
 
 BattleScript_EffectCorrosiveGas::
@@ -6738,7 +6738,7 @@ BattleScript_WishComesTrue::
 	playanimation BS_TARGET, B_ANIM_WISH_HEAL
 	printstring STRINGID_PKMNWISHCAMETRUE
 	waitmessage B_WAIT_TIME_LONG
-	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_IGNORE_DISGUISE
 	healthbarupdate BS_TARGET
 	datahpupdate BS_TARGET
 	printstring STRINGID_PKMNREGAINEDHEALTH
@@ -7582,13 +7582,8 @@ BattleScript_AbilityPopUp:
 	return
 
 BattleScript_AbilityPopUpScripting:
-	.if B_ABILITY_POP_UP == TRUE
-	showabilitypopup BS_SCRIPTING
-	pause 40
-	.endif
-	recordability BS_SCRIPTING
-	sethword sABILITY_OVERWRITE, 0
-	return
+	copybyte gBattlerAbility, sBATTLER
+	goto BattleScript_AbilityPopUp
 
 BattleScript_AbilityPopUpOverwriteThenNormal:
 	setbyte sFIXED_ABILITY_POPUP, TRUE
@@ -9638,13 +9633,6 @@ BattleScript_EjectPackActivate_End2::
 BattleScript_EjectPackActivates::
 	jumpifcantswitch BS_SCRIPTING, BattleScript_EjectButtonEnd
 	goto BattleScript_EjectPackActivate_Ret
-
-BattleScript_EjectPackMissesTiming::
-	playanimation BS_SCRIPTING, B_ANIM_HELD_ITEM_EFFECT
-	printstring STRINGID_EJECTBUTTONACTIVATE
-	waitmessage B_WAIT_TIME_LONG
-	removeitem BS_SCRIPTING
-	return
 
 BattleScript_DarkTypePreventsPrankster::
 	attackstring
