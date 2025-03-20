@@ -94,6 +94,7 @@ script PlayerHouse_T_StarterConvo{
     call(PlayerHouse_EventScript_GiveStarter)
     setflag(FLAG_SYS_POKEMON_GET)
     setflag(FLAG_RECEIVED_RUNNING_SHOES)
+    setflag(FLAG_SYS_B_DASH)
     setflag(FLAG_EXPSHARE_ON)
     releaseall
     end
